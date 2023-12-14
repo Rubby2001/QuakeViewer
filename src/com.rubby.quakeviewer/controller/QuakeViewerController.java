@@ -140,10 +140,11 @@ public class QuakeViewerController {
         status.setText("查询中请稍后...");
 
         String queryString = query.getText();
+        String queryString2 = queryString.replaceAll("\"", "\\\\\"");
 
         // 在后台线程中执行查询
         Thread queryThread = new Thread(() -> {
-            this.assetsList = JsonRequest.postRequest(queryString, APIkey, MaxSize);
+            this.assetsList = JsonRequest.postRequest(queryString2, APIkey, MaxSize);
 
             // 使用 Platform.runLater 更新 UI
             Platform.runLater(() -> {
