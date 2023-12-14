@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="QuakeViewer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/QuakeViewer_jar</output-path>
+    <root id="archive" name="QuakeViewer.jar">
+      <element id="module-output" name="QuakeViewer" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson2/fastjson2/2.0.15/fastjson2-2.0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/controlsfx/controlsfx/8.40.18/controlsfx-8.40.18.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson2/fastjson2-extension/2.0.15/fastjson2-extension-2.0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson/2.0.15/fastjson-2.0.15.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

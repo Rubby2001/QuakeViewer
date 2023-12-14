@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rubby.quakeviewer.controller.QuakeViewerController">
+   <children>
+       <AnchorPane VBox.vgrow="ALWAYS">
+           <children>
+               <HBox spacing="10.0D" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" VBox.vgrow="ALWAYS">
+                   <padding><Insets left="66" right="66" top="24" /></padding>
+               <Label alignment="CENTER" layoutX="245.0" layoutY="33.0" prefHeight="23.0" prefWidth="80.0" text="查询语句：" HBox.hgrow="ALWAYS">
+                   <font>
+                       <Font size="15.0" />
+                   </font>
+               </Label>
+               <TextField fx:id="query" alignment="CENTER" layoutX="323.0" layoutY="33.0" prefHeight="23.0" prefWidth="378.0" HBox.hgrow="ALWAYS" />
+               <Button alignment="CENTER" layoutX="724.0" layoutY="33.0" mnemonicParsing="false" onAction="#doSearch" text="查询" HBox.hgrow="ALWAYS" />
+               <Label fx:id="status" layoutY="33.0" prefHeight="23.0" prefWidth="120" text="Label" visible="false" HBox.hgrow="ALWAYS" />
+               </HBox>
+               <HBox spacing="10.0D" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="77" VBox.vgrow="ALWAYS">
+               <TableView fx:id="table" layoutY="78.0" prefHeight="522.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                   <columns>
+                       <TableColumn fx:id="count" minWidth="1.0" prefWidth="25" resizable="false" text=" " />
+                       <TableColumn fx:id="url" prefWidth="240.0" text="URL" />
+                       <TableColumn fx:id="ip" prefWidth="100" text="IP" />
+                       <TableColumn fx:id="port" prefWidth="42.5" resizable="false" text="PORT" />
+                       <TableColumn fx:id="domain" prefWidth="100" text="DOMAIN" />
+                       <TableColumn fx:id="service" prefWidth="55" resizable="false" text="SERVICE" />
+                       <TableColumn fx:id="title" prefWidth="120" text="TITLE" />
+                       <TableColumn fx:id="cms" prefWidth="120" text="CMS" />
+                       <TableColumn fx:id="icp" prefWidth="120" text="ICP" />
+                       <TableColumn fx:id="company" prefWidth="120.0" text="COMPANY" />
+                   </columns>
+                   <columnResizePolicy>
+                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                   </columnResizePolicy>
+                  <contextMenu>
+                     <ContextMenu fx:id="contextMenu">
+                       <items>
+                         <MenuItem onAction="#onClikCopyURL" mnemonicParsing="false" text="复制URL" />
+                           <MenuItem onAction="#onClikCopyIP" mnemonicParsing="false" text="复制IP" />
+                           <MenuItem onAction="#onClikCopyDomain" mnemonicParsing="false" text="复制Domain" />
+                           <MenuItem onAction="#onClikCopyICP" mnemonicParsing="false" text="复制ICP" />
+                           <MenuItem onAction="#onClikCopyCompany" mnemonicParsing="false" text="复制公司名" />
+                       </items>
+                     </ContextMenu>
+                  </contextMenu>
+               </TableView>
+               </HBox>
+           </children>
+       </AnchorPane>
+   </children>
+</VBox>
