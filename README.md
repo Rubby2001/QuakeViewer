@@ -19,3 +19,15 @@ java -jar QuakeViewer.jar
 双击可以实现跳转：
 
 ![image-20231214162656467](README.assets/image-20231214162656467.png)
+
+## 配置API-KEY
+
+第一次运行会弹出提示配置apikey等信息：
+
+![image-20231214162959349](README.assets/image-20231214162959349.png)
+
+配置完成后，会在同文件夹下生成配置文件api.config：
+
+![image-20231214163105814](README.assets/image-20231214163105814.png)
+
+每次重新配置后，请重启应用加载配置。
