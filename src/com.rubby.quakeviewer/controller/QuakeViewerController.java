@@ -6,6 +6,10 @@ import com.rubby.quakeviewer.entity.assets;
 import com.rubby.quakeviewer.util.CreateConfigFile;
 import com.rubby.quakeviewer.util.JsonRequest;
 import com.rubby.quakeviewer.util.ReadFile;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -28,9 +32,9 @@ import org.controlsfx.control.StatusBar;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.awt.*;
-import java.io.File;
+
+import com.opencsv.CSVWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URI;
 import java.nio.file.Files;
@@ -230,6 +234,108 @@ public class QuakeViewerController {
         ClipboardContent clipboardContent = new ClipboardContent();
         clipboardContent.putString(content);
         Clipboard.getSystemClipboard().setContent(clipboardContent);
+    }
+
+    @FXML
+    public void onExportDatas(ActionEvent actionEvent) throws IOException {
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileName = "导出数据_" + timestamp + ".csv";
+
+        List<assets> slectedAssets = table.getSelectionModel().getSelectedItems();
+
+        FileOutputStream os = new FileOutputStream(fileName);
+        os.write(0xef); //加上这句话
+        os.write(0xbb); //加上这句话
+        os.write(0xbf); //加上这句话
+        try (CSVWriter writer = new CSVWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8))) {
+            // 写入CSV文件头
+            String[] header = {"序号", "Url", "Ip","Port","Domain","Service","Title","Cms","Icp","Company"};
+            writer.writeNext(header);
+
+            // 遍历资产列表，写入每一行数据
+            for (assets asset : slectedAssets) {
+                String[] row = {
+                        String.valueOf(asset.getCount()),
+                        asset.getUrl(),
+                        asset.getIp(),
+                        asset.getPort(),
+                        asset.getDomain(),
+                        asset.getService(),
+                        asset.getTitle(),
+                        asset.getCms(),
+                        asset.getIcp(),
+                        asset.getCompany()
+                };
+                writer.writeNext(row);
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("导出成功");
+            alert.setHeaderText(null);
+            alert.setContentText("CSV文件导出成功，文件名: " + fileName);
+
+            // 显示弹窗
+            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("导出失败");
+            alert.setHeaderText(null);
+            alert.setContentText("CSV文件导出失败：" + e.getMessage());
+
+            // 显示弹窗
+            alert.showAndWait();
+        }
+    }
+
+
+    @FXML
+    public void onExportAllDatas(ActionEvent actionEvent) throws IOException {
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileName = "导出数据_" + timestamp + ".csv";
+
+        List<assets> slectedAssets = table.getItems();
+        FileOutputStream os = new FileOutputStream(fileName);
+        os.write(0xef); //加上这句话
+        os.write(0xbb); //加上这句话
+        os.write(0xbf); //加上这句话
+        try (CSVWriter writer = new CSVWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8))) {
+            // 写入CSV文件头
+            String[] header = {"序号", "Url", "Ip","Port","Domain","Service","Title","Cms","Icp","Company"};
+            writer.writeNext(header);
+
+            // 遍历资产列表，写入每一行数据
+            for (assets asset : slectedAssets) {
+                String[] row = {
+                        String.valueOf(asset.getCount()),
+                        asset.getUrl(),
+                        asset.getIp(),
+                        asset.getPort(),
+                        asset.getDomain(),
+                        asset.getService(),
+                        asset.getTitle(),
+                        asset.getCms(),
+                        asset.getIcp(),
+                        asset.getCompany()
+                };
+                writer.writeNext(row);
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("导出成功");
+            alert.setHeaderText(null);
+            alert.setContentText("CSV文件导出成功，文件名: " + fileName);
+
+            // 显示弹窗
+            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("导出失败");
+            alert.setHeaderText(null);
+            alert.setContentText("CSV文件导出失败：" + e.getMessage());
+
+            // 显示弹窗
+            alert.showAndWait();
+        }
     }
 //    @FXML
 //    public void jumpToURL(MouseEvent mouseEvent) {

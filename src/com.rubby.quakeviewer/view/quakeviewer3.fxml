@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rubby.quakeviewer.controller.QuakeViewerController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rubby.quakeviewer.controller.QuakeViewerController">
    <children>
        <AnchorPane VBox.vgrow="ALWAYS">
            <children>
-               <HBox spacing="10.0D" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" VBox.vgrow="ALWAYS">
+               <HBox prefHeight="73.0" prefWidth="1000.0" spacing="10.0D" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" VBox.vgrow="ALWAYS">
                    <padding><Insets left="66" right="66" top="24" /></padding>
                <Label alignment="CENTER" layoutX="245.0" layoutY="33.0" prefHeight="23.0" prefWidth="80.0" text="查询语句：" HBox.hgrow="ALWAYS">
                    <font>
@@ -26,7 +26,7 @@
                </Label>
                <TextField fx:id="query" alignment="CENTER" layoutX="323.0" layoutY="33.0" prefHeight="23.0" prefWidth="378.0" HBox.hgrow="ALWAYS" />
                <Button alignment="CENTER" layoutX="724.0" layoutY="33.0" mnemonicParsing="false" onAction="#doSearch" text="查询" HBox.hgrow="ALWAYS" />
-               <Label fx:id="status" layoutY="33.0" prefHeight="23.0" prefWidth="120" text="Label" visible="false" HBox.hgrow="ALWAYS" />
+                   <Label fx:id="status" layoutX="724.0" layoutY="56.0" prefHeight="23.0" prefWidth="120" text="Label" visible="false" HBox.hgrow="ALWAYS" />
                </HBox>
                <HBox spacing="10.0D" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="77" VBox.vgrow="ALWAYS">
                <TableView fx:id="table" layoutY="78.0" prefHeight="522.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -48,11 +48,13 @@
                   <contextMenu>
                      <ContextMenu fx:id="contextMenu">
                        <items>
-                         <MenuItem onAction="#onClikCopyURL" mnemonicParsing="false" text="复制URL" />
-                           <MenuItem onAction="#onClikCopyIP" mnemonicParsing="false" text="复制IP" />
-                           <MenuItem onAction="#onClikCopyDomain" mnemonicParsing="false" text="复制Domain" />
-                           <MenuItem onAction="#onClikCopyICP" mnemonicParsing="false" text="复制ICP" />
-                           <MenuItem onAction="#onClikCopyCompany" mnemonicParsing="false" text="复制公司名" />
+                         <MenuItem mnemonicParsing="false" onAction="#onClikCopyURL" text="复制URL" />
+                           <MenuItem mnemonicParsing="false" onAction="#onClikCopyIP" text="复制IP" />
+                           <MenuItem mnemonicParsing="false" onAction="#onClikCopyDomain" text="复制Domain" />
+                           <MenuItem mnemonicParsing="false" onAction="#onExportDatas" text="导出选中数据" />
+                           <MenuItem mnemonicParsing="false" onAction="#onExportAllDatas" text="导出全部数据" />
+                           <MenuItem mnemonicParsing="false" onAction="#onClikCopyICP" text="复制ICP" />
+                           <MenuItem mnemonicParsing="false" onAction="#onClikCopyCompany" text="复制公司名" />
                        </items>
                      </ContextMenu>
                   </contextMenu>

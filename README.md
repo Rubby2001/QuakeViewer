@@ -12,9 +12,9 @@ java -jar QuakeViewer.jar
 
 ![image-20231214162439986](README.assets/image-20231214162439986.png)
 
-可以右键复制URL、ip等内容：
+可以右键复制URL、ip等内容，可以导出选中的数据、全部查询数据：
 
-![image-20231214162544959](README.assets/image-20231214162544959.png)
+![image-20231216005847289](README.assets/image-20231216005847289.png)
 
 双击可以实现跳转：
 
