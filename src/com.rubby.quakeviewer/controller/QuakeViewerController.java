@@ -8,6 +8,8 @@ import com.rubby.quakeviewer.util.JsonRequest;
 import com.rubby.quakeviewer.util.ReadFile;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import javafx.application.Platform;
@@ -184,12 +186,25 @@ public class QuakeViewerController {
         List<assets> slectedAssets = table.getSelectionModel().getSelectedItems();
         String content=slectedAssets.stream()
                 .map(assets::getUrl)
+                .map(this::processUrl)
                 .collect(Collectors.joining("\n"));
 
         ClipboardContent clipboardContent = new ClipboardContent();
         clipboardContent.putString(content);
         Clipboard.getSystemClipboard().setContent(clipboardContent);
 
+    }
+    // 处理 URL 的方法
+    private String processUrl(String url) {
+        try {
+            URL parsedUrl = new URL(url);
+            // 获取协议和主机部分
+            return parsedUrl.getProtocol() + "://" + parsedUrl.getHost();
+        } catch (MalformedURLException e) {
+            // URL 格式错误处理
+            e.printStackTrace();
+            return ""; // 或者返回一个默认值
+        }
     }
     @FXML
     public void onClikCopyIP(ActionEvent actionEvent) {
