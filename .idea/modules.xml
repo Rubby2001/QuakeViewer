@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/QuakeViewer.iml" filepath="$PROJECT_DIR$/QuakeViewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/QuakeViewer.iml" filepath="$PROJECT_DIR$/.idea/QuakeViewer.iml" />
     </modules>
   </component>
 </project>
