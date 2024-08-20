@@ -127,13 +127,18 @@ public class QuakeViewerController {
                 String url = seletedAssets.getUrl();
                 URI uri = URI.create(url);
 
-                Desktop dp = Desktop.getDesktop();
-                if (dp.isSupported(Desktop.Action.BROWSE)) {
-                    try {
-                        dp.browse(uri);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                try {
+                    if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+                        // 在Linux上使用xdg-open命令
+                        new ProcessBuilder("xdg-open", uri.toString()).start();
+                    } else {
+                        Desktop dp = Desktop.getDesktop();
+                        if (dp.isSupported(Desktop.Action.BROWSE)) {
+                            dp.browse(uri);
+                        }
                     }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -147,7 +152,7 @@ public class QuakeViewerController {
 
         String queryString = query.getText();
         String queryString2 = queryString.replaceAll("\"", "\\\\\"");
-
+        //System.out.println(queryString2);
         // 在后台线程中执行查询
         Thread queryThread = new Thread(() -> {
             this.assetsList = JsonRequest.postRequest(queryString2, APIkey, MaxSize);
@@ -199,7 +204,8 @@ public class QuakeViewerController {
         try {
             URL parsedUrl = new URL(url);
             // 获取协议和主机部分
-            return parsedUrl.getProtocol() + "://" + parsedUrl.getHost();
+            //return parsedUrl.getProtocol() + "://" + parsedUrl.getHost();
+            return parsedUrl.toString();
         } catch (MalformedURLException e) {
             // URL 格式错误处理
             e.printStackTrace();
