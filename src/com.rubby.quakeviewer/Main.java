@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Main.stage = stage;
-        stage.setTitle("QuakeViewer By github.com/Zuojunhao");
+        stage.setTitle("QuakeViewer By github.com/Rubby2001");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/quakeviewer3.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
